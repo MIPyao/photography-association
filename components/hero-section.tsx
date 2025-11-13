@@ -9,7 +9,7 @@ export function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/images/hero/professional-photography-exhibition.jpg')`,
+          backgroundImage: `url('/images/hero/professional-photography-exhibition-hall-with-eleg.jpg')`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
@@ -48,5 +48,5 @@ export function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
