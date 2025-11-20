@@ -9,21 +9,21 @@ const newsItems = [
     title: "2024年东城区摄影大赛圆满落幕",
     excerpt: "本次大赛共收到来自全区摄影爱好者的作品500余幅，经过专业评委的严格评选，最终评出获奖作品50幅...",
     date: "2024-03-15",
-    image: "/photography-competition-award-ceremony.jpg",
+    image: "/sucai/photography-competition-award-ceremony.jpg",
   },
   {
     id: 2,
     title: "春季摄影采风活动成功举办",
     excerpt: "协会组织会员前往故宫、天坛等地进行春季摄影采风，捕捉春日美景，提升摄影技艺...",
     date: "2024-03-10",
-    image: "/photographers-taking-pictures-in-traditional-chine.jpg",
+    image: "/sucai/photographers-taking-pictures-in-traditional-chine.jpg",
   },
   {
     id: 3,
     title: "摄影技术交流讲座即将开展",
     excerpt: "邀请知名摄影师分享人像摄影技巧，包括光线运用、构图技法等专业知识...",
     date: "2024-03-08",
-    image: "/photography-workshop-with-professional-equipment.jpg",
+    image: "/sucai/photography-workshop-with-professional-equipment.jpg",
   },
 ]
 

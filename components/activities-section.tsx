@@ -8,13 +8,14 @@ const activities = [
   {
     id: 1,
     title: "夜景摄影技巧分享会",
-    description: "专业摄影师现场指导夜景拍摄技巧，包括长曝光、光轨拍摄等高级技法",
+    description:
+      "专业摄影师现场指导夜景拍摄技巧，包括长曝光、光轨拍摄等高级技法",
     date: "2024-03-25",
     time: "19:00-21:00",
     location: "东城区文化馆",
     participants: 30,
     status: "报名中",
-    image: "/night-photography-workshop-with-city-lights.jpg",
+    image: "/sucai/night-photography-workshop-with-city-lights.jpg",
   },
   {
     id: 2,
@@ -25,7 +26,7 @@ const activities = [
     location: "南锣鼓巷周边",
     participants: 25,
     status: "即将开始",
-    image: "/traditional-beijing-hutong-alley-with-photographer.jpg",
+    image: "/sucai/traditional-beijing-hutong-alley-with-photographer.jpg",
   },
   {
     id: 3,
@@ -36,9 +37,9 @@ const activities = [
     location: "东城区图书馆",
     participants: 50,
     status: "筹备中",
-    image: "/portrait-photography-studio-setup-with-professiona.jpg",
+    image: "/sucai/portrait-photography-studio-setup-with-professiona.jpg",
   },
-]
+];
 
 export function ActivitiesSection() {
   return (

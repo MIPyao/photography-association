@@ -11,7 +11,7 @@ const exhibitions = [
     title: "春日京城",
     artist: "张明华",
     description: "捕捉北京春天的美丽瞬间，从樱花盛开到柳絮飞舞",
-    image: "/beautiful-spring-scenery-in-beijing-with-cherry-bl.jpg",
+    image: "/sucai/beautiful-spring-scenery-in-beijing-with-cherry-bl.jpg",
     views: 1250,
     likes: 89,
   },
@@ -20,7 +20,7 @@ const exhibitions = [
     title: "胡同记忆",
     artist: "李文静",
     description: "老北京胡同的光影变化，记录传统与现代的交融",
-    image: "/traditional-beijing-hutong-with-dramatic-lighting-.jpg",
+    image: "/sucai/traditional-beijing-hutong-with-dramatic-lighting-.jpg",
     views: 980,
     likes: 67,
   },
@@ -29,7 +29,7 @@ const exhibitions = [
     title: "都市夜色",
     artist: "王建国",
     description: "东城区夜景摄影作品，展现现代都市的璀璨夜色",
-    image: "/beijing-city-night-skyline-with-beautiful-lights-a.jpg",
+    image: "/sucai/beijing-city-night-skyline-with-beautiful-lights-a.jpg",
     views: 1580,
     likes: 124,
   },
@@ -38,11 +38,11 @@ const exhibitions = [
     title: "人文东城",
     artist: "赵雅琴",
     description: "街头摄影作品集，记录东城区人民的日常生活",
-    image: "/street-photography-of-people-daily-life-in-beijing.jpg",
+    image: "/sucai/street-photography-of-people-daily-life-in-beijing.jpg",
     views: 756,
     likes: 45,
   },
-]
+];
 
 export function ExhibitionCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
