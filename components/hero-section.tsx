@@ -12,7 +12,7 @@ export function HeroSection() {
           backgroundImage: `url('/images/hero/professional-photography-exhibition-hall-with-eleg.jpg')`,
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
+        <div className="absolute inset-0 bg-linear-to-b from-transparent to-black/60" />
       </div>
 
       {/* Content */}
