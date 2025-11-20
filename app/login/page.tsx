@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Camera } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -27,7 +27,7 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -71,6 +71,49 @@ export default function LoginPage() {
   };
 
   return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>邮箱</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="admin@example.com"
+                  type="email"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>密码</FormLabel>
+              <FormControl>
+                <Input placeholder="••••••" type="password" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" className="w-full" disabled={loading}>
+          {loading ? "登录中..." : "登录后台"}
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </Button>
+      </form>
+    </Form>
+  );
+}
+
+export default function LoginPage() {
+  return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <Card className="max-w-md w-full border-2 shadow-lg">
         <CardHeader className="text-center space-y-4">
@@ -81,44 +124,9 @@ export default function LoginPage() {
           <p className="text-sm text-muted-foreground">请输入管理员账号密码</p>
         </CardHeader>
         <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>邮箱</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="admin@example.com"
-                        type="email"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>密码</FormLabel>
-                    <FormControl>
-                      <Input placeholder="••••••" type="password" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? "登录中..." : "登录后台"}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </form>
-          </Form>
+          <Suspense fallback={<div className="text-center py-4">加载中...</div>}>
+            <LoginForm />
+          </Suspense>
         </CardContent>
       </Card>
     </div>

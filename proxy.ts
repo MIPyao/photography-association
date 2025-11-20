@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 
 const SESSION_COOKIE = "pa_admin_token"
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const token = request.cookies.get(SESSION_COOKIE)?.value
   const { pathname } = request.nextUrl
 
