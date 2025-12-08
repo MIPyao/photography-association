@@ -15,7 +15,8 @@ export function Footer() {
               </span>
             </div>
             <p className="text-primary-foreground/80 mb-4 max-w-md theme-business:text-sm theme-business:font-medium">
-              致力于推广摄影艺术，提升摄影技艺，为摄影爱好者提供交流学习的平台， 记录东城区的美好时光，传承摄影文化。
+              致力于推广摄影艺术，提升摄影技艺，为摄影爱好者提供交流学习的平台，
+              记录东城区的美好时光，传承摄影文化。
             </p>
           </div>
 
@@ -75,19 +76,19 @@ export function Footer() {
             </h3>
             <ul className="space-y-3">
               <li className="flex items-center">
-                <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
+                <MapPin className="h-4 w-4 mr-2 shrink-0" />
                 <span className="text-primary-foreground/80 text-sm theme-business:text-xs theme-business:font-medium">
                   北京市东城区文化馆
                 </span>
               </li>
               <li className="flex items-center">
-                <Phone className="h-4 w-4 mr-2 flex-shrink-0" />
+                <Phone className="h-4 w-4 mr-2 shrink-0" />
                 <span className="text-primary-foreground/80 text-sm theme-business:text-xs theme-business:font-medium">
                   010-12345678
                 </span>
               </li>
               <li className="flex items-center">
-                <Mail className="h-4 w-4 mr-2 flex-shrink-0" />
+                <Mail className="h-4 w-4 mr-2 shrink-0" />
                 <span className="text-primary-foreground/80 text-sm theme-business:text-xs theme-business:font-medium">
                   info@dcphoto.org
                 </span>
@@ -103,5 +104,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
