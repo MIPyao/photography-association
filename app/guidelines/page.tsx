@@ -162,7 +162,7 @@ export default function GuidelinesPage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/photography-guidelines-rules.jpg')`,
+            backgroundImage: `url('/sucai/photography-workshop-with-professional-equipment.jpg')`,
           }}
         />
         <div className="absolute inset-0 bg-linear-to-b from-background via-background/90 to-background" />
