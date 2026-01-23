@@ -76,7 +76,7 @@ export default function ContactPage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/photography-contact-office.jpg')`,
+            backgroundImage: `url('/sucai/conference-meeting-hall.jpg')`,
           }}
         />
         <div className="absolute inset-0 bg-linear-to-b from-background via-background/90 to-background" />
