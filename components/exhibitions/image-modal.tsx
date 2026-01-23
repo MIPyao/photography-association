@@ -45,7 +45,7 @@ export function ImageModal({ exhibition, open, onClose }: ImageModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl max-h-[90vh] p-0 overflow-hidden">
+      <DialogContent className="max-w-[95vw] w-[95vw] max-h-[95vh] h-[95vh] p-0 overflow-hidden">
         <div className="flex flex-col lg:flex-row h-full">
           {/* 左侧图片区域 */}
           <div className="lg:w-3/4 bg-black flex items-center justify-center relative">

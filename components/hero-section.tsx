@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Camera } from "lucide-react"
+import Link from "next/link"
 
 export function HeroSection() {
   return (
@@ -38,13 +39,15 @@ export function HeroSection() {
             了解协会
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-white text-white hover:bg-white hover:text-primary bg-transparent"
-          >
-            在线影展
-          </Button>
+          <Link href="/exhibitions">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-primary bg-transparent"
+            >
+              在线影展
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

@@ -60,7 +60,7 @@ export default function ExhibitionsPage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/photography-gallery-exhibition.jpg')`,
+            backgroundImage: `url('/sucai/art-gallery-exhibition-photos.jpg')`,
           }}
         />
         <div className="absolute inset-0 bg-linear-to-b from-background via-background/90 to-background" />
