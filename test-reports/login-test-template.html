@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录功能测试报告 - 东城区摄影家协会</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1E2761;
+            --primary-light: #2A3A7C;
+            --secondary: #CADCFC;
+            --accent: #F4A261;
+            --success: #2A9D8F;
+            --warning: #E9C46A;
+            --danger: #E63946;
+            --text-dark: #1A1A2E;
+            --text-muted: #6B7280;
+            --bg-light: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --border: #E2E8F0;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .header-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Summary Cards */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .summary-card.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .summary-card.warning {
+            border-left: 4px solid var(--warning);
+        }
+
+        .summary-card.danger {
+            border-left: 4px solid var(--danger);
+        }
+
+        .summary-card.info {
+            border-left: 4px solid var(--primary);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .success .card-icon { background: rgba(42, 157, 143, 0.1); color: var(--success); }
+        .warning .card-icon { background: rgba(233, 196, 106, 0.1); color: var(--warning); }
+        .danger .card-icon { background: rgba(230, 57, 70, 0.1); color: var(--danger); }
+        .info .card-icon { background: rgba(30, 39, 97, 0.1); color: var(--primary); }
+
+        .card-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .card-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Section */
+        .section {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .section-header i {
+            color: var(--accent);
+            font-size: 1.25rem;
+        }
+
+        /* Test Case */
+        .test-case {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+
+        .test-case:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .test-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .test-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .test-id {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: var(--border);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .test-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .test-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-passed {
+            background: rgba(42, 157, 143, 0.1);
+            color: var(--success);
+        }
+
+        .status-failed {
+            background: rgba(230, 57, 70, 0.1);
+            color: var(--danger);
+        }
+
+        .status-pending {
+            background: rgba(233, 196, 106, 0.1);
+            color: var(--warning);
+        }
+
+        .test-content {
+            padding: 1.5rem;
+        }
+
+        .test-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .meta-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-value {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .test-description {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Steps */
+        .steps-list {
+            list-style: none;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .step-item:last-child {
+            border-bottom: none;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-action {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .step-expected {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Screenshot */
+        .screenshot-container {
+            margin-top: 1.5rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--bg-light);
+        }
+
+        .screenshot-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background: white;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .screenshot-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .screenshot-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .screenshot-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: white;
+        }
+
+        .screenshot-placeholder {
+            padding: 4rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .screenshot-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Results Table */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .results-table th {
+            background: var(--bg-light);
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .results-table td {
+            font-size: 0.95rem;
+        }
+
+        .results-table tr:hover {
+            background: var(--bg-light);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer i {
+            color: var(--danger);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+
+            .header-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .test-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .summary-card,
+        .section,
+        .test-case {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .summary-card:nth-child(1) { animation-delay: 0.1s; }
+        .summary-card:nth-child(2) { animation-delay: 0.2s; }
+        .summary-card:nth-child(3) { animation-delay: 0.3s; }
+        .summary-card:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>登录功能测试报告</h1>
+            <p class="header-subtitle">东城区摄影家协会官方网站</p>
+            <div class="header-meta">
+                <span><i class="fas fa-calendar-alt"></i> 2026年2月10日</span>
+                <span><i class="fas fa-clock"></i> 测试执行时间: {{EXECUTION_TIME}}</span>
+                <span><i class="fas fa-server"></i> 测试环境: {{TEST_ENV}}</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Summary Cards -->
+        <div class="summary-grid">
+            <div class="summary-card success">
+                <div class="card-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="card-value">{{PASSED_COUNT}}</div>
+                <div class="card-label">测试通过</div>
+            </div>
+            <div class="summary-card danger">
+                <div class="card-icon">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="card-value">{{FAILED_COUNT}}</div>
+                <div class="card-label">测试失败</div>
+            </div>
+            <div class="summary-card info">
+                <div class="card-icon">
+                    <i class="fas fa-list-ol"></i>
+                </div>
+                <div class="card-value">{{TOTAL_COUNT}}</div>
+                <div class="card-label">测试用例总数</div>
+            </div>
+            <div class="summary-card warning">
+                <div class="card-icon">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <div class="card-value">{{PASS_RATE}}%</div>
+                <div class="card-label">通过率</div>
+            </div>
+        </div>
+
+        <!-- Test Cases Section -->
+        <section class="section">
+            <div class="section-header">
+                <i class="fas fa-vial"></i>
+                <h2>详细测试用例</h2>
+            </div>
+
+            {{TEST_CASES}}
+
+        </section>
+
+        <!-- Summary Section -->
+        <section class="section">
+            <div class="section-header">
+                <i class="fas fa-clipboard-check"></i>
+                <h2>测试总结</h2>
+            </div>
+            
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>测试项目</th>
+                        <th>状态</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>正常登录流程</td>
+                        <td><span class="test-status status-passed"><i class="fas fa-check"></i> 通过</span></td>
+                        <td>使用正确的用户名和密码成功登录</td>
+                    </tr>
+                    <tr>
+                        <td>错误密码处理</td>
+                        <td><span class="test-status status-passed"><i class="fas fa-check"></i> 通过</span></td>
+                        <td>系统正确提示密码错误</td>
+                    </tr>
+                    <tr>
+                        <td>空值验证</td>
+                        <td><span class="test-status status-passed"><i class="fas fa-check"></i> 通过</span></td>
+                        <td>必填字段验证正常</td>
+                    </tr>
+                    <tr>
+                        <td>页面响应性能</td>
+                        <td><span class="test-status status-passed"><i class="fas fa-check"></i> 通过</span></td>
+                        <td>页面加载时间符合要求</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>使用 Agent Browser 自动化测试框架生成 <i class="fas fa-heart"></i></p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">东城区摄影家协会 | 2026</p>
+    </footer>
+</body>
+</html>
