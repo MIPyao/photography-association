@@ -8,8 +8,7 @@
     "lint": "oxlint",
     "seed": "tsx scripts/seed.ts",
     "start": "next start",
-    "prepare": "husky",
-    "review": "opencode --agent code-review-expert --prompt 'Review and fix P0/P1 issues'"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "oxlint -D correctness -D perf -D suspicious"
