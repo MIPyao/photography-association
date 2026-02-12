@@ -350,4 +350,4 @@ chore: 构建/工具相关
 
 <p align="center">
   <strong>东城区摄影家协会</strong> © 2026
-</p>
+</p>// test
