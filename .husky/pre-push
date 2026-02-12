@@ -1,0 +1,10 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🔍 Running code review before push..."
+echo "提示: 可以运行 'npm run review' 手动审查"
+
+# 可选: 在 push 前运行审查（不会阻塞）
+# opencode --agent code-review-expert --prompt "Review P0/P1 issues in commits"
+
+echo "✅ Push allowed. Remember to run 'npm run review' regularly!"

@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Camera, Mail, Phone, MapPin } from "lucide-react"
-// test
+
 export function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground theme-flat:bg-accent theme-business:bg-foreground theme-modern:bg-primary/90 theme-modern:backdrop-blur-sm">
