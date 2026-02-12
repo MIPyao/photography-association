@@ -5,9 +5,16 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "lint": "next lint",
+    "lint": "oxlint",
     "seed": "tsx scripts/seed.ts",
-    "start": "next start"
+    "start": "next start",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "oxlint --deny-correctness --deny-perf --deny-suspicious",
+      "opencode --agent code-review-expert --prompt 'Review and fix P0/P1 issues'"
+    ]
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -71,6 +78,9 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "dotenv": "^16.4.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "oxlint": "^1.46.0",
     "postcss": "^8.5",
     "tailwindcss": "^4.1.9",
     "tsx": "^4.19.2",
